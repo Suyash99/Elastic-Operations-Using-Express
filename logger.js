@@ -1,15 +1,15 @@
 const winston = require("winston");
-const Date = new Date();
+const date = new Date();
 const logger = winston.createLogger({
   transports: [new winston.transports.Console()],
 });
 
 const info = (message) => {
-  logger.info(`${Date.toLocaleDateString()} message: ${message}`);
+  logger.info(`${date.toDateString()} ${message}`);
 };
 
 const error = (message) => {
-  logger.error(`${Date.toLocaleDateString()} message: ${message}`);
+  logger.error(`${date.toLocaleDateString()} ${message}`);
 };
 
 module.exports = {

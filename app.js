@@ -9,7 +9,7 @@ process.env.TZ = "Asia/Calcutta";
 app.use(json());
 app.use(isAuthorized);
 
-const port = procee.env.port;
+const port = process.env.port;
 
 app.listen(port, () => {
   logger.info("Server is up and running");

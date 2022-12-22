@@ -1,4 +1,4 @@
-## Elastic Dummy Server Setup For Testing
+## Elastic Dummy Server Setup For Testing(Index, Document, Searching)
 
 Basic **Express** server setup from which you can setup your elastic index/documents for local testing data (elastic should be on same system)
 
@@ -11,21 +11,12 @@ Basic **Express** server setup from which you can setup your elastic index/docum
 - For adding Documents inside Index The Data posted on the API for creating documents inside the index should be of type text/plain.
                             'Content-Type':'text/plain'
 
+- **P.S.** Please ensure that the data is JSON stringified as per the indexing as explained in the next point.
+
 - The format should contain line breaks as shown below and the **even** indexes will have index name and **odd** indexes.
                             {"index":{"_index":"companydatabase","_type":"employees"}}
-                Document-   {
-                            FirstName: "ELVA",
-                            LastName: "RECHKEMMER",
-                            Designation: "CEO",
-                            Salary: "154000",
-                            DateOfJoining: "1993-01-11",
-                            Address: "8417 Blue Spring St. Port Orange, FL 32127",
-                            Gender: "Female",
-                            Age: 62,
-                            MaritalStatus: "Unmarried",
-                            Interests:
-                                "Body Building,Illusion,Protesting,Taxidermy,TV watching,Cartooning,Skateboarding",
-                            }
+                            {"FirstName":"ELVA","LastName":"RECHKEMMER","Designation":"CEO","Salary":"154000","DateOfJoining":"1993-01-11","Address":"8417 Blue Spring St. Port Orange, FL 32127","Gender":"Female","Age":62,"MaritalStatus":"Unmarried","Interests":"Body Building,Illusion,Protesting,Taxidermy,TV watching,Cartooning,Skateboarding"}
+
                             
 
 - The Output would be an object having keys data , error and status as indicators wheter the request passed or failed.

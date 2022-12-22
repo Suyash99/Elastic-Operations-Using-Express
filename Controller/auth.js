@@ -1,4 +1,4 @@
-export function isAuthorized(req, res, next) {
+exports.isAuthorized = (req, res, next) => {
   let token = req.headers.authorization;
 
   if (!token) {
@@ -10,4 +10,4 @@ export function isAuthorized(req, res, next) {
   }
 
   next();
-}
+};
