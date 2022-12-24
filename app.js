@@ -1,23 +1,26 @@
 const express = require("express");
 const app = express();
-const { json } = require("body-parser");
+const bodyParser = require("body-parser");
 const logger = require("./logger");
 const { isAuthorized } = require("./Controller/auth");
+const elasticOperations = require("./View/elasticRoute");
 require("dotenv").config();
 process.env.TZ = "Asia/Calcutta";
 
-app.use(json());
+app.use(bodyParser.text());
+app.use(bodyParser.json());
 app.use(isAuthorized);
+app.use("/elastic", elasticOperations);
 
-const port = process.env.port;
+const port = process.env.port || 8123;
 
 app.listen(port, () => {
   logger.info("Server is up and running");
 });
 
 app.get("/", (req, res) => {
-  res.json({
-    data: "Home Page GET Response",
+  res.status(200).json({
+    data: "Home Page GET Response successfull",
     error: null,
     status: 200,
   });

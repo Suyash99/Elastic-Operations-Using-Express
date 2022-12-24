@@ -1,6 +1,8 @@
 ## Elastic Dummy Server Setup For Testing(Index, Document, Searching)
 
-Basic **Express** server setup from which you can setup your elastic index/documents for local testing data (elastic should be on same system)
+Basic **Express** server setup from which you can setup your elastic index/documents for local testing data
+
+**P.S I am Currently using custom testing Elastic hosting on some private testing server**
 
 > Format to follow when posting data
 

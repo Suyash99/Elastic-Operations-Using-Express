@@ -5,11 +5,11 @@ const logger = winston.createLogger({
 });
 
 const info = (message) => {
-  logger.info(`${date.toDateString()} ${message}`);
+  logger.info(`${date.toLocaleString()} ${message}`);
 };
 
 const error = (message) => {
-  logger.error(`${date.toLocaleDateString()} ${message}`);
+  logger.error(`${date.toLocaleString()} ${message}`);
 };
 
 module.exports = {
