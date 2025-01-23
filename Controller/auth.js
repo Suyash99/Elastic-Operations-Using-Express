@@ -1,4 +1,5 @@
 require("dotenv").config();
+const { HttpStatusCode } = require("axios");
 
 exports.isAuthorized = (req, res, next) => {
   let token = req.headers.authorization;
@@ -7,7 +8,7 @@ exports.isAuthorized = (req, res, next) => {
     return res.json({
       data: null,
       error: "Unauthorized",
-      status: 401,
+      status: HttpStatusCode.Unauthorized,
     });
   }
 
@@ -16,6 +17,6 @@ exports.isAuthorized = (req, res, next) => {
 
 exports.responseReturn = (response, req, res) => {
   return typeof response == "object"
-    ? res.status(200).json({ data: response, error: null, status: 200 })
-    : res.status(400).json({ data: null, error: response, status: 400 });
+    ? res.status(200).json({ data: response, error: null, status: HttpStatusCode.Ok })
+    : res.status(400).json({ data: null, error: response, status: HttpStatusCode.BadRequest });
 };

@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const logger = require("./logger");
+const { HttpStatusCode } = require("axios");
 const { isAuthorized } = require("./Controller/auth");
 const elasticOperations = require("./View/elasticRoute");
 require("dotenv").config();
@@ -12,6 +13,14 @@ app.use(bodyParser.json());
 app.use(isAuthorized);
 app.use("/elastic", elasticOperations);
 
+app.use((err, req, res, next) => {
+  logger.error(err.stack);
+  res.status(HttpStatusCode.InternalServerError).json({
+    error: "Something went wrong!",
+    message: err.message,
+  });
+});
+
 const port = process.env.port || 8123;
 
 app.listen(port, () => {
@@ -19,9 +28,9 @@ app.listen(port, () => {
 });
 
 app.get("/", (req, res) => {
-  res.status(200).json({
+  res.status(HttpStatusCode.Ok).json({
     data: "Home Page GET Response successfull",
     error: null,
-    status: 200,
+    status: HttpStatusCode.Ok,
   });
 });

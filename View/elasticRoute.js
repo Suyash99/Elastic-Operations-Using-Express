@@ -11,6 +11,7 @@ const {
 } = require("../Controller/elasticOperations");
 const { responseReturn } = require("../Controller/auth");
 const logger = require("../logger");
+const { HttpStatusCode } = require("axios");
 
 //TODO: Create different view service for index operations
 
@@ -28,10 +29,10 @@ app.post("/index/:indName/insertDocuments", async (req, res) => {
   let indexName = req.params.indName;
   let data = req.body;
   if (!data || !Object.keys(data).length) {
-    return res.status(400).json({
+    return res.status(HttpStatusCode.BadRequest).json({
       data: null,
       error: "Please enter document to be inserted",
-      status: 400,
+      status: HttpStatusCode.BadRequest,
     });
   }
   let cookie = req.headers.authorization;
@@ -45,10 +46,10 @@ app.put("/index/:indName/updateDocument/:id", async (req, res) => {
   let doc = req.body;
 
   if (!doc || !Object.keys(doc).length) {
-    return res.status(400).json({
+    return res.status(HttpStatusCode.BadRequest).json({
       data: null,
       error: "Please enter document to be updated!",
-      status: 400,
+      status: HttpStatusCode.BadRequest,
     });
   }
   let indexName = req.params.indName;
@@ -84,10 +85,10 @@ app.post("/analyze", async (req, res) => {
   let query = req.body;
   let cookie = req.headers.authorization;
   if (!Object.keys(query).length) {
-    return res.status(400).json({
+    return res.status(HttpStatusCode.BadRequest).json({
       data: null,
       error: "Please provide some query to be analyzed",
-      status: 400,
+      status: HttpStatusCode.BadRequest,
     });
   }
 

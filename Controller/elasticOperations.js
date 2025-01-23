@@ -1,5 +1,5 @@
 const fs = require("fs");
-const rp = require("request-promise");
+const axios = require('axios');
 const logger = require("../logger");
 require("dotenv").config();
 const basePath = process.env.basePath;
@@ -316,7 +316,13 @@ async function operationOnElastic(
     if (document) {
       options["body"] = document;
     }
-    const response = await rp(options);
+
+    const response = await axios.post(url, document, {
+      headers: {
+        cookie: cookie,
+        "kbn-xsrf": "reporting",
+      },
+    });
 
     return response;
   } catch (error) {
